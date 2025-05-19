@@ -1,7 +1,6 @@
 streamlit
-os
 numpy
 tensorflow
 Keras-Preprocessing
-PIL
-gdwon
+Pillow
+gdown
