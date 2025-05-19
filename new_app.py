@@ -44,7 +44,7 @@ if uploaded_file is not None:
         model = keras.models.load_model(MODEL_PATH)
         img_array = preprocess_image(image_pil)
         prediction = model.predict(img_array)
-        os.remove(model)
+        os.remove(MODEL_PATH)
         predicted_class = "Pneumonia" if prediction[0][0] > 0.5 else "Normal"
         confidence = prediction[0][0] if prediction[0][0] > 0.5 else 1 - prediction[0][0]
 
