@@ -1,8 +1,7 @@
 streamlit
+os
 numpy
-matplotlib
-seaborn
-scikit-learn
 tensorflow
 Keras-Preprocessing
 PIL
+gdwon
