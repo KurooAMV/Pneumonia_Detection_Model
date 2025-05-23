@@ -1,5 +1,9 @@
 streamlit
 numpy
+<<<<<<< HEAD
 tensorflow==2.15.0
+=======
+tensorflow==2.12.0
+>>>>>>> 87a43b67d51054cd94e52c9519cb63849ae5afc1
 keras
 pillow
