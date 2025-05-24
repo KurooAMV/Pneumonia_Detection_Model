@@ -12,7 +12,7 @@ def preprocess_image(img):
     img = img / 255.0
     return img
 
-model = load_model("model/PneumoniaDetectionModel.keras")
+model = load_model("model/Pneumonia_Detector.keras")
 
 st.title("Pneumonia Detector Using CNN")
 uploaded_file = st.file_uploader("Upload an Image for Prediction", type=['jpg', 'png', 'jpeg'])
