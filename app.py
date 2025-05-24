@@ -5,11 +5,10 @@ from PIL import Image
 
 def preprocess_image(img):
     img = img.convert('L')  # Convert to grayscale
-    img = img.resize((64, 64))
-    img = np.array(img)
-    img = np.expand_dims(img, axis=-1)  # Add channel dimension: (128, 128, 1)
-    img = np.expand_dims(img, axis=0)   # Add batch dimension: (1, 128, 128, 1)
-    img = img / 255.0
+    img = img.resize((64, 64))  # Resize to match model input
+    img = np.array(img) / 255.0  # Normalize to [0, 1]
+    img = np.expand_dims(img, axis=-1)  # Add channel dimension: (64, 64, 1)
+    img = np.expand_dims(img, axis=0)   # Add batch dimension: (1, 64, 64, 1)
     return img
 
 model = load_model("model/Pneumonia_Detector.keras")
