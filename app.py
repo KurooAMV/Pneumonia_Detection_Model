@@ -63,9 +63,7 @@ elif choice == "Use sample images":
 
 if image:
     image_pil = Image.open(image)
-    thumbnail = image_pil.copy()
-    thumbnail.thumbnail((200, 200)) 
-    col1.image(thumbnail, caption="Preview", width=100)
+    col1.image(image, caption=f"Preview", use_container_width=True)
 
     if col1.button("Predict"):
         img_array = preprocess_image(image_pil)
