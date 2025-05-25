@@ -41,7 +41,6 @@ model.load_weights("weights.h5")
 
 
 st.title("Pneumonia Detector Using CNN")
-col1, col2 = st.columns(2)
 
 choice = st.radio(
     "Choose how to provide an image:",
@@ -49,6 +48,7 @@ choice = st.radio(
     horizontal=True
 )
 
+col1, col2 = st.columns(2)
 image_pil = None
 
 if choice == "Upload your own":
