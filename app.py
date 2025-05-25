@@ -82,9 +82,9 @@ if image_pil:
     
 chart_path = "static"
 chart_images = [img for img in os.listdir(chart_path) if img.lower().endswith(('.jpg', '.png', '.jpeg'))]
-chart_sample = st.selectbox("Select a sample image", chart_images)
+chart_sample = st.selectbox("Select a chart image", chart_images)
 if selected_sample:
-    image_path = os.path.join(sample_path, chart_sample)
+    image_path = os.path.join(chart_path, chart_sample)
     chart_image = Image.open(image_path)
 st.image(chart_image, caption=f"Preview", use_container_width=True)
 
