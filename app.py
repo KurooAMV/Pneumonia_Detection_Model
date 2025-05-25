@@ -79,3 +79,12 @@ if image_pil:
         else:
             col2.success("Normal")
         col2.write(f"### Confidence Level: {confidence:.2%}")
+    
+chart_path = "static"
+chart_images = [img for img in os.listdir(chart_path) if img.lower().endswith(('.jpg', '.png', '.jpeg'))]
+chart_sample = col1.selectbox("Select a sample image", chart_images)
+if selected_sample:
+    image_path = os.path.join(sample_path, chart_sample)
+    chart_image = Image.open(image_path)
+col1.image(chart_image, caption=f"Preview", use_container_width=True)
+
