@@ -11,7 +11,7 @@ def preprocess_image(img):
     img = np.expand_dims(img, axis=0)   # Add batch dimension: (1, 64, 64, 1)
     return img
 
-model = load_model("model/Pneumonia_Detector.keras")
+model = load_model("model/Pneumonia_Detector.keras", compile = False)
 weights = model.get_weights()
 model.set_weights(weights)
 # model.load_weights("weights.h5")
