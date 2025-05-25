@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from tensorflow.keras.models import load_model, load_weights    
+from tensorflow.keras.models import load_model
 from PIL import Image
 
 def preprocess_image(img):
