@@ -49,7 +49,7 @@ choice = st.radio(
     horizontal=True
 )
 
-image = None
+image_pil = None
 
 if choice == "Upload your own":
     uploaded_file = col1.file_uploader("Upload an X-ray image", type=["jpg", "png", "jpeg"])
@@ -63,9 +63,9 @@ elif choice == "Use sample images":
         image_path = os.path.join(sample_path, selected_sample)
         image_pil = Image.open(image_path)
 
-if image:
+if image_pil:
     # image_pil = Image.open(image)
-    col1.image(image, caption=f"Preview", use_container_width=True)
+    col1.image(image_pil, caption=f"Preview", use_container_width=True)
 
     if col1.button("Predict"):
         img_array = preprocess_image(image_pil)
