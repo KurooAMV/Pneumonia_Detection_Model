@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import keras
 from keras.models import load_model
 from PIL import Image
 
@@ -11,9 +12,30 @@ def preprocess_image(img):
     img = np.expand_dims(img, axis=0)   # Add batch dimension: (1, 64, 64, 1)
     return img
 
-model = load_model("model/Pneumonia_Detector.keras", compile = False)
-weights = model.get_weights()
-model.set_weights(weights)
+def build_model():
+    dimen = 64
+    channels = 1
+    model = keras.models.Sequential([
+        keras.layers.InputLayer(input_shape = (dimen,dimen, channels)),
+        keras.layers.InputLayer(input_shape = (dimen,dimen, channels)),
+        keras.layers.Conv2D(filters=32, kernel_size=3, activation='relu'),
+        keras.layers.MaxPooling2D(pool_size=(2,2)),
+        keras.layers.Conv2D(filters=32, kernel_size=3, activation='relu'),
+        keras.layers.MaxPooling2D(pool_size=(2,2)),
+        keras.layers.Conv2D(filters=32, kernel_size=3, activation='relu'),
+        keras.layers.MaxPooling2D(pool_size=(2,2)),
+        keras.layers.Flatten(),
+        keras.layers.Dense(activation='relu',units=128),
+        keras.layers.Dense(activation='sigmoid',units=1),
+    ])
+    return model
+
+model = build_model()
+model.load_weights("weights.h5")
+
+# model = load_model("model/Pneumonia_Detector.keras", compile = False)
+# weights = model.get_weights()
+# model.set_weights(weights)
 # model.load_weights("weights.h5")
 
 
