@@ -54,17 +54,17 @@ image = None
 if choice == "Upload your own":
     uploaded_file = col1.file_uploader("Upload an X-ray image", type=["jpg", "png", "jpeg"])
     if uploaded_file is not None:
-        image = Image.open(uploaded_file)
+        image_pil = Image.open(uploaded_file)
 elif choice == "Use sample images":
     sample_path = "samples"
     sample_images = [img for img in os.listdir(sample_path) if img.lower().endswith(('.jpg', '.png', '.jpeg'))]
     selected_sample = col1.selectbox("Select a sample image", sample_images)
     if selected_sample:
         image_path = os.path.join(sample_path, selected_sample)
-        image = Image.open(image_path)
+        image_pil = Image.open(image_path)
 
 if image:
-    image_pil = Image.open(image)
+    # image_pil = Image.open(image)
     col1.image(image, caption=f"Preview", use_container_width=True)
 
     if col1.button("Predict"):
