@@ -56,7 +56,7 @@ if choice == "Upload your own":
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
 elif choice == "Use sample images":
-    sample_path = "static/samples"
+    sample_path = "samples"
     sample_images = [img for img in os.listdir(sample_path) if img.lower().endswith(('.jpg', '.png', '.jpeg'))]
     selected_sample = col1.selectbox("Select a sample image", sample_images)
     if selected_sample:
