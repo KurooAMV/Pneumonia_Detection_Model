@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 from PIL import Image
 
 def preprocess_image(img):
@@ -12,7 +12,10 @@ def preprocess_image(img):
     return img
 
 model = load_model("model/Pneumonia_Detector.keras")
-model.load_weights("weights.h5")
+weights = model.get_weights()
+model.set_weights(weights)
+# model.load_weights("weights.h5")
+
 
 st.title("Pneumonia Detector Using CNN")
 uploaded_file = st.file_uploader("Upload an Image for Prediction", type=['jpg', 'png', 'jpeg'])
