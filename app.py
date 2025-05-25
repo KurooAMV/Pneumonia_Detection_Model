@@ -49,6 +49,8 @@ choice = st.radio(
     horizontal=True
 )
 
+image = None
+
 if choice == "Upload your own":
     uploaded_file = col1.file_uploader("Upload an X-ray image", type=["jpg", "png", "jpeg"])
     if uploaded_file is not None:
