@@ -3,6 +3,7 @@ import numpy as np
 import keras
 from keras.models import load_model
 from PIL import Image
+import os
 
 def preprocess_image(img):
     img = img.convert('L')  # Convert to grayscale
@@ -40,11 +41,28 @@ model.load_weights("weights.h5")
 
 
 st.title("Pneumonia Detector Using CNN")
-uploaded_file = st.file_uploader("Upload an Image for Prediction", type=['jpg', 'png', 'jpeg'])
 col1, col2 = st.columns(2)
 
-if uploaded_file is not None:
-    image_pil = Image.open(uploaded_file)
+choice = st.radio(
+    "Choose how to provide an image:",
+    ["Upload your own", "Use sample images"],
+    horizontal=True
+)
+
+if choice == "Upload your own":
+    uploaded_file = col1.file_uploader("Upload an X-ray image", type=["jpg", "png", "jpeg"])
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+elif choice == "Use sample images":
+    sample_path = "static/samples"
+    sample_images = [img for img in os.listdir(sample_path) if img.lower().endswith(('.jpg', '.png', '.jpeg'))]
+    selected_sample = col1.selectbox("Select a sample image", sample_images)
+    if selected_sample:
+        image_path = os.path.join(sample_path, selected_sample)
+        image = Image.open(image_path)
+
+if image:
+    image_pil = Image.open(image)
     thumbnail = image_pil.copy()
     thumbnail.thumbnail((200, 200)) 
     col1.image(thumbnail, caption="Preview", width=100)
