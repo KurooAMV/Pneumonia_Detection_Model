@@ -16,7 +16,7 @@ Sklearn - Data processing
 Seaborn, Matplotlib - Visualization
 Numpy - numerical operations
 
-**DATASET: **
+**DATASET:**
 The data set is leveraged from Kaggle consisting over 5,800 labelled chest x-rays images:
 Divided in to train, test and validation set and further into Normal and Pneumonia classes
 
